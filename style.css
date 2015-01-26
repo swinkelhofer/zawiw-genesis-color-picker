@@ -1,0 +1,62 @@
+#genesis_theme_settings_colorscheme_name
+{
+	width: 25%;
+	text-align: center;
+}
+
+#genesis_theme_settings_colorscheme_color, #genesis_theme_settings_colorscheme_bgcolor
+{
+	width: 25%;
+	text-align: center;
+
+}
+
+#genesis_theme_settings_colorscheme_apply
+{
+	width: 25%;
+	text-align: center;
+	display: block;
+	margin-top: 5px;
+}
+
+#genesis_theme_settings_color_picker .warning {
+	color: #0074a2;
+	box-shadow: 0px 0px 3px #0074a2;
+}
+
+#genesis_theme_settings_colorscheme_warnings.warning  {
+	padding: 10px;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	font-weight: bold;
+}
+
+#genesis_theme_settings_exandor {
+	display: block;
+	border: none !important;
+	text-decoration: none;
+	-webkit-box-shadow: none;
+
+	box-shadow: none;
+}
+
+#genesis-theme-settings-style-selector .inside .fa:before {
+	margin-right:5px;
+}
+
+#genesis_theme_settings_color_picker {
+	max-height: 0px;
+	overflow: hidden;
+	transition: all .2s linear 0s;
+	margin-top: 5px;
+	border: 1px solid tranparent;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#genesis_theme_settings_color_picker label {
+	width: 25%;
+	position: relative;
+	display: inline-block;
+	line-height: 2.0;
+}
