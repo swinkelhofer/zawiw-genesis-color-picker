@@ -51,15 +51,15 @@ function apply_color_scheme()
 			jQuery('#genesis_theme_settings_colorscheme_warnings').text("");
 			jQuery('#genesis_theme_settings_colorscheme_warnings').removeClass("warning");
 			jQuery('#genesis_theme_settings_colorscheme_name').removeClass("warning");
-			select.append('<option value="' + name.toLowerCase().replace(/\s/g, "_") + '" style="background-color: ' + bgcolor + '; color: ' + color + ';">' + name + '</option>');
+			select.append('<option value="' + name.toLowerCase().replace(/\s/g, "_") + '" style="background-color: ' + bgcolor + '; color: ' + color + ';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + name + '</option>');
 			jQuery('#genesis_theme_settings_colorscheme_name').val("");
 			jQuery('#genesis_theme_settings_bgcolorscheme_color').val("#FFFFFF");
 			jQuery('#genesis_theme_settings_colorscheme_color').val("#000000");
 			document.getElementById("genesis-settings[style_selection]").options.selectedIndex = document.getElementById("genesis-settings[style_selection]").options.length - 1;
 			jQuery('#genesis_theme_settings_colorscheme_color').css('background-color', '#000');
 			jQuery('#genesis_theme_settings_colorscheme_bgcolor').css('background-color', '#FFF');
-			//jQuery(document.getElementById('genesis-settings[style_selection]')).css('background-color', color);
 			expand('#genesis_theme_settings_color_picker');
+			jQuery('#genesis-theme-settings-style-selector select').trigger("chosen:updated");
 		}
 		else
 		{
