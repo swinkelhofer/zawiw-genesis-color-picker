@@ -23,12 +23,14 @@ function zawiw_genesis_color_picker_queue_stylesheet()
 {
 	wp_enqueue_style( 'font_awesome4.2', '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' );
     wp_enqueue_style( 'zawiw_genesis_color_picker_style', plugins_url( 'style.css', __FILE__ ) );
+    wp_enqueue_style( 'chosencss', plugins_url( 'chosen/chosen.css', __FILE__ ) );
    
 }
 function zawiw_genesis_color_picker_queue_script()
 {
     wp_enqueue_script( 'jquery' );
     wp_enqueue_script( 'zawiw_genesis_color_picker_script', plugins_url( 'helper.js', __FILE__ ) );
+    wp_enqueue_script( 'chosenjs', plugins_url( 'chosen/chosen.jquery.min.js', __FILE__ ) );
     wp_enqueue_script( 'jscolor_picker', plugins_url( 'jscolor/jscolor.js', __FILE__ ) );
 }
 ?>

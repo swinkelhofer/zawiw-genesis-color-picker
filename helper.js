@@ -7,6 +7,24 @@ jQuery(document).ready(function(){
 	jQuery('#genesis_theme_settings_color_picker').append('<label for="genesis_theme_settings_colorscheme_bgcolor">Background Color:</label><input type="text" id="genesis_theme_settings_colorscheme_bgcolor" class="color {hash:true}" value="#65FF36" /><br />');
 	jQuery('#genesis_theme_settings_color_picker').append('<label for="genesis_theme_settings_colorscheme_color">Font Color:</label><input type="text" id="genesis_theme_settings_colorscheme_color" class="color {hash:true}" value="#333333" />');
 	jQuery('#genesis_theme_settings_color_picker').append('<input type="button" id="genesis_theme_settings_colorscheme_apply" onClick="javascript: apply_color_scheme()" value="Create" class="button button-primary" />');
+  
+	jQuery.post("../wp-content/plugins/zawiw-genesis-color-picker/getcolor.php", {colorrequest: jQuery('#genesis-theme-settings-style-selector select').html()}).done(function(data) {
+		if(data != "authentication error" && data != "post error")
+		{
+			jQuery('#genesis-theme-settings-style-selector select').addClass('chosen-select-width');
+			jQuery('#genesis-theme-settings-style-selector select').html(data);
+			var config = {
+		      '.chosen-select'           : {},
+		      '.chosen-select-deselect'  : {allow_single_deselect:true},
+		      '.chosen-select-no-single' : {disable_search_threshold:10},
+		      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+		      '.chosen-select-width'     : {width:"250px"}
+		    }
+		    for (var selector in config) {
+		      jQuery(selector).chosen(config[selector]);
+		    }
+		}
+	});
 });
 
 function apply_color_scheme()
@@ -33,7 +51,7 @@ function apply_color_scheme()
 			jQuery('#genesis_theme_settings_colorscheme_warnings').text("");
 			jQuery('#genesis_theme_settings_colorscheme_warnings').removeClass("warning");
 			jQuery('#genesis_theme_settings_colorscheme_name').removeClass("warning");
-			select.append('<option value="' + name.toLowerCase().replace(/\s/g, "_") + '" style="background-color: ' + color + '">' + name + '</option>');
+			select.append('<option value="' + name.toLowerCase().replace(/\s/g, "_") + '" style="background-color: ' + bgcolor + '; color: ' + color + ';">' + name + '</option>');
 			jQuery('#genesis_theme_settings_colorscheme_name').val("");
 			jQuery('#genesis_theme_settings_bgcolorscheme_color').val("#FFFFFF");
 			jQuery('#genesis_theme_settings_colorscheme_color').val("#000000");

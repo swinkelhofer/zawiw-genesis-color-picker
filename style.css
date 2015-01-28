@@ -60,3 +60,10 @@
 	display: inline-block;
 	line-height: 2.0;
 }
+
+#genesis_theme_settings_color_picker option
+{
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+}
