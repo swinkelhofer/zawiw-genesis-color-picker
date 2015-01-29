@@ -1,30 +1,33 @@
 jQuery(document).ready(function(){
-	jQuery('#genesis-theme-settings-style-selector .inside').prepend('<div id="genesis_theme_settings_color_picker"></div>');
-	jQuery('#genesis-theme-settings-style-selector .inside').prepend('<a class="fa fa-chevron-down" id="genesis_theme_settings_exandor" href="javascript: expand(\'#genesis_theme_settings_color_picker\')">Create New Colorscheme</a>')
+	if(document.URL.search("genesis") != -1)
+	{
+		jQuery('#genesis-theme-settings-style-selector .inside').prepend('<div id="genesis_theme_settings_color_picker"></div>');
+		jQuery('#genesis-theme-settings-style-selector .inside').prepend('<a class="fa fa-chevron-down" id="genesis_theme_settings_exandor" href="javascript: expand(\'#genesis_theme_settings_color_picker\')">Create New Colorscheme</a>')
 
-	jQuery('#genesis_theme_settings_color_picker').append('<div id="genesis_theme_settings_colorscheme_warnings"></div>');
-	jQuery('#genesis_theme_settings_color_picker').append('<label for="genesis_theme_settings_colorscheme_name">Name For ColorScheme:</label><input type="text" id="genesis_theme_settings_colorscheme_name" /><br />');
-	jQuery('#genesis_theme_settings_color_picker').append('<label for="genesis_theme_settings_colorscheme_bgcolor">Background Color:</label><input type="text" id="genesis_theme_settings_colorscheme_bgcolor" class="color {hash:true}" value="#65FF36" /><br />');
-	jQuery('#genesis_theme_settings_color_picker').append('<label for="genesis_theme_settings_colorscheme_color">Font Color:</label><input type="text" id="genesis_theme_settings_colorscheme_color" class="color {hash:true}" value="#333333" />');
-	jQuery('#genesis_theme_settings_color_picker').append('<input type="button" id="genesis_theme_settings_colorscheme_apply" onClick="javascript: apply_color_scheme()" value="Create" class="button button-primary" />');
-  
-	jQuery.post("../wp-content/plugins/zawiw-genesis-color-picker/getcolor.php", {colorrequest: jQuery('#genesis-theme-settings-style-selector select').html()}).done(function(data) {
-		if(data != "authentication error" && data != "post error")
-		{
-			jQuery('#genesis-theme-settings-style-selector select').addClass('chosen-select-width');
-			jQuery('#genesis-theme-settings-style-selector select').html(data);
-			var config = {
-		      '.chosen-select'           : {},
-		      '.chosen-select-deselect'  : {allow_single_deselect:true},
-		      '.chosen-select-no-single' : {disable_search_threshold:10},
-		      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
-		      '.chosen-select-width'     : {width:"250px"}
-		    }
-		    for (var selector in config) {
-		      jQuery(selector).chosen(config[selector]);
-		    }
-		}
-	});
+		jQuery('#genesis_theme_settings_color_picker').append('<div id="genesis_theme_settings_colorscheme_warnings"></div>');
+		jQuery('#genesis_theme_settings_color_picker').append('<label for="genesis_theme_settings_colorscheme_name">Name For ColorScheme:</label><input type="text" id="genesis_theme_settings_colorscheme_name" /><br />');
+		jQuery('#genesis_theme_settings_color_picker').append('<label for="genesis_theme_settings_colorscheme_bgcolor">Background Color:</label><input type="text" id="genesis_theme_settings_colorscheme_bgcolor" class="color {hash:true}" value="#65FF36" /><br />');
+		jQuery('#genesis_theme_settings_color_picker').append('<label for="genesis_theme_settings_colorscheme_color">Font Color:</label><input type="text" id="genesis_theme_settings_colorscheme_color" class="color {hash:true}" value="#333333" />');
+		jQuery('#genesis_theme_settings_color_picker').append('<input type="button" id="genesis_theme_settings_colorscheme_apply" onClick="javascript: apply_color_scheme()" value="Create" class="button button-primary" />');
+	  
+		jQuery.post("../wp-content/plugins/zawiw-genesis-color-picker/getcolor.php", {colorrequest: jQuery('#genesis-theme-settings-style-selector select').html()}).done(function(data) {
+			if(data != "authentication error" && data != "post error")
+			{
+				jQuery('#genesis-theme-settings-style-selector select').addClass('chosen-select-width');
+				jQuery('#genesis-theme-settings-style-selector select').html(data);
+				var config = {
+			      '.chosen-select'           : {},
+			      '.chosen-select-deselect'  : {allow_single_deselect:true},
+			      '.chosen-select-no-single' : {disable_search_threshold:10},
+			      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+			      '.chosen-select-width'     : {width:"250px"}
+			    }
+			    for (var selector in config) {
+			      jQuery(selector).chosen(config[selector]);
+			    }
+			}
+		});
+	}
 });
 
 function apply_color_scheme()
