@@ -22,6 +22,11 @@ function zawiw_genesis_color_picker_activation()
 }
 function zawiw_genesis_color_picker_deactivation()
 {
+	if(!is_user_logged_in())
+	{
+		echo "authentication error";
+		return;
+	}
 	if(!isset($_POST['remove']) || !isset($_POST['submit']))
 	{
 
