@@ -10,6 +10,10 @@
 		echo "post error";
 		return;
 	}
+	function getTheme()
+	{
+		return  preg_replace('/ /', '-', preg_replace('/ theme/', "", strtolower(wp_get_theme())));
+	}
 	function hexColorAllocate($im,$hex){
 	    $hex = ltrim($hex,'#');
 	    $a = hexdec(substr($hex,0,2));
@@ -19,7 +23,7 @@
 	}
 	$matches = null;
 	preg_match_all('/value.*?</i', $_POST['colorrequest'], $matches);
-	$stylecss = file_get_contents(dirname( __FILE__ )."/../../themes/lifestyle-pro/style.css");
+	$stylecss = file_get_contents(dirname( __FILE__ )."/../../themes/" . getTheme() . "/style.css");
 	foreach ($matches[0] as $match)
 	{
 		$css = preg_replace('/.*value=.?"(.*?).?".*/', '\1', $match);
@@ -32,8 +36,16 @@
 			continue;
 		}
 			$option = preg_replace('/.*>(.*?)</', ' \1', $match);
-			$bgcolor = preg_replace('/.*\.' . $css . ' \.nav-secondary.*?(background-color: .*?;).*/s', '\1', $stylecss);
-			$color = preg_replace('/.*\.' . $css . ' \.button,.*?\.site-footer a.*?(color: .*?;).*/s', '\1', $stylecss);
+			if(wp_get_theme() == "Lifestyle Pro Theme")
+			{
+				$bgcolor = preg_replace('/.*\.' . $css . ' \.nav-secondary.*?(background-color: #.*?;).*/s', '\1', $stylecss);
+				$color = preg_replace('/.*\.' . $css . ' \.button,.*?\.site-footer a.*?(color: #.*?;).*/s', '\1', $stylecss);
+			}
+			else if(wp_get_theme() == "Metro Pro Theme")
+			{
+				$bgcolor = preg_replace('/.*.' . $css . ' h2 a:hover {.*?(color: #.*?;).*/s', 'background-\1', $stylecss);
+				$color = preg_replace('/.*.' . $css . ' a.social-buttons {.*?(color: #.*?;).*/s', '\1', $stylecss);
+			}
 
 		if(!file_exists("images/" . $css. ".png"))
 		{

@@ -19,6 +19,11 @@ function zawiw_genesis_color_picker_activation()
 		copy(dirname( __FILE__ )."/../../themes/lifestyle-pro/functions.php", dirname( __FILE__ )."/../../themes/lifestyle-pro/functions.php.genesisbak");
 		copy(dirname( __FILE__ )."/../../themes/lifestyle-pro/style.css", dirname( __FILE__ )."/../../themes/lifestyle-pro/style.css.genesisbak");
 	}
+	if(!file_exists(dirname( __FILE__ ). "/../../themes/metro-pro/functions.php.genesisbak"))
+	{
+		copy(dirname( __FILE__ )."/../../themes/metro-pro/functions.php", dirname( __FILE__ )."/../../themes/metro-pro/functions.php.genesisbak");
+		copy(dirname( __FILE__ )."/../../themes/metro-pro/style.css", dirname( __FILE__ )."/../../themes/metro-pro/style.css.genesisbak");
+	}
 }
 function zawiw_genesis_color_picker_deactivation()
 {
@@ -92,11 +97,15 @@ function zawiw_genesis_color_picker_deactivation()
 		copy(dirname( __FILE__ )."/../../themes/lifestyle-pro/style.css.genesisbak", dirname( __FILE__ )."/../../themes/lifestyle-pro/style.css");
 		unlink(dirname( __FILE__ )."/../../themes/lifestyle-pro/functions.php.genesisbak");
 		unlink(dirname( __FILE__ )."/../../themes/lifestyle-pro/style.css.genesisbak");
+		copy(dirname( __FILE__ )."/../../themes/metro-pro/functions.php.genesisbak", dirname( __FILE__ )."/../../themes/metro-pro/functions.php");
+		copy(dirname( __FILE__ )."/../../themes/metro-pro/style.css.genesisbak", dirname( __FILE__ )."/../../themes/metro-pro/style.css");
+		unlink(dirname( __FILE__ )."/../../themes/metro-pro/functions.php.genesisbak");
+		unlink(dirname( __FILE__ )."/../../themes/metro-pro/style.css.genesisbak");
 	}
 }
 function zawiw_genesis_color_picker_queue_stylesheet()
 {
-	if(get_current_theme() != "Lifestyle Pro Theme")
+	if(wp_get_theme() != "Lifestyle Pro Theme" && wp_get_theme() != "Metro Pro Theme") 
 		return;
 	wp_enqueue_style( 'font_awesome4.2', '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' );
     wp_enqueue_style( 'zawiw_genesis_color_picker_style', plugins_url( 'style.css', __FILE__ ) );
@@ -105,7 +114,7 @@ function zawiw_genesis_color_picker_queue_stylesheet()
 }
 function zawiw_genesis_color_picker_queue_script()
 {
-	if(get_current_theme() != "Lifestyle Pro Theme")
+	if(wp_get_theme() != "Lifestyle Pro Theme" && wp_get_theme() != "Metro Pro Theme") 
 		return;
     wp_enqueue_script( 'jquery' );
     wp_enqueue_script( 'zawiw_genesis_color_picker_script', plugins_url( 'helper.js', __FILE__ ) );
