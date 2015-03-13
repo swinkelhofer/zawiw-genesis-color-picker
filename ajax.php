@@ -19,6 +19,7 @@
 	}
 	$functionsphp = file_get_contents(dirname( __FILE__ )."/../../themes/". getTheme() ."/functions.php");
 	$stylecss = file_get_contents(dirname( __FILE__ )."/../../themes/". getTheme() ."/style.css");
+	$_POST['colorscheme_css_name'] = 'lifestyle-pro-' . $_POST['colorscheme_css_name'];
 	$pattern1 = '/' . $_POST['colorscheme_name'] . '/';
 	$pattern2 = '/.' . $_POST['colorscheme_css_name'] . '/';
 	if(preg_match($pattern1, $functionsphp) === 1 || preg_match($pattern2, $functionsphp) === 1 || preg_match($pattern2, $stylecss) === 1)
